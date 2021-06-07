@@ -3,6 +3,7 @@ package com.example.jobportalforengineers;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -23,11 +24,13 @@ public class RagistrationActivity extends AppCompatActivity {
     private Button btnreg,btnlogin;
 
     private FirebaseAuth mAuth;
+    private ProgressDialog mDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ragistration);
         mAuth=FirebaseAuth.getInstance();
+        mDialog=new ProgressDialog(this);
         registration();
     }
 
@@ -55,13 +58,21 @@ public class RagistrationActivity extends AppCompatActivity {
                     passreg.setError("Required field..");
                     return;
                 }
+                mDialog.setMessage("Processing...");
+                mDialog.show();
                 mAuth.createUserWithEmailAndPassword(email,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful())
+                        if(!task.isSuccessful())
                         {
                             Toast.makeText(getApplicationContext(),"Successful",Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(getApplicationContext(),HomeActivity.class));
+                            mDialog.dismiss();
+                        }
+                        else
+                        {
+                            Toast.makeText(getApplicationContext(),"Registation Failed..",Toast.LENGTH_SHORT).show();
+                            mDialog.dismiss();
                         }
                     }
                 });

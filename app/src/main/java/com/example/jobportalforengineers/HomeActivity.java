@@ -19,7 +19,7 @@ public class HomeActivity extends AppCompatActivity {
         btnallJobs=findViewById(R.id.btn_alljob);
         btnpostJobs=findViewById(R.id.btn_postjob);
         toolbar=findViewById(R.id.toolbar_home);
-        setSupportActionBar(toolbar);
+        //setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Job portal");
         btnallJobs.setOnClickListener(new View.OnClickListener() {
             @Override
