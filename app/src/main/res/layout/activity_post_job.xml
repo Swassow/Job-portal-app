@@ -6,22 +6,46 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".PostJobActivity">
-    <include layout="@layout/toolbar"
-        android:id="@+id/toolbar_post_job"></include>
+
+
+    <include
+        android:id="@+id/toolbar_post_job"
+        layout="@layout/toolbar" />
+
+
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:layout_width="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_marginBottom="25dp"
-            android:layout_marginRight="25dp"
-            app:fabSize="normal"
-            android:backgroundTint="@color/colorAccent"
-            android:src="@drawable/add"
-            android:id="@+id/fab_id"
-            android:layout_height="wrap_content"
-            ></com.google.android.material.floatingactionbutton.FloatingActionButton>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_job_post_id"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+
+        </LinearLayout>
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginRight="25dp"
+            android:layout_marginBottom="25dp"
+            app:fabSize="normal"
+            app:srcCompat="@drawable/add"
+            tools:ignore="VectorDrawableCompat">
+
+        </com.google.android.material.floatingactionbutton.FloatingActionButton>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
 </LinearLayout>
